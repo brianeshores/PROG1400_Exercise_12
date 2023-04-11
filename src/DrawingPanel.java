@@ -12,7 +12,7 @@ public class DrawingPanel extends JPanel {	//This JPanel will serve as our drawi
 
     //Declare a timer, used to move the car
     //Set to fire every 1/10th of a second, since the delay parameter is in milliseconds
-    private Timer timer = new Timer(10,  new TimerAction());
+    private Timer timer = new Timer(50,  new TimerAction());
     private Ball ball;
 
     //Constructor
@@ -26,7 +26,14 @@ public class DrawingPanel extends JPanel {	//This JPanel will serve as our drawi
             @Override
             public void mouseClicked(MouseEvent e) {
                 //When mouse is clicked on panel, call our start/stop timer method
-                ball.changeDirection();
+                System.out.println(e.getLocationOnScreen());
+                System.out.println(e.getX());
+                System.out.println(e.getY());
+                System.out.println(ball.getxPosition());
+                System.out.println(ball.getyPosition());
+                if(ball.getxPosition() - e.getX() <= 30 && ball.getyPosition() - e.getY() <= 30) {
+                    ball.changeDirection();
+                }
             }
         });
     }
